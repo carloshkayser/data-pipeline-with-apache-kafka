@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fake-kafka-producer
+  labels:
+    app: fake-kafka-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fake-kafka-producer
+  template:
+    metadata:
+      labels:
+        app: fake-kafka-producer
+    spec:
+      containers:
+      - name: fake-kafka-producer
+        image: carloshkayser/fake-kafka-producer:latest
+        imagePullPolicy: Never
