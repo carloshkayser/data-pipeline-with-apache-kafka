@@ -4,4 +4,5 @@ poetry install
 poetry run jupyter-lab
 ```
 
-data: https://www.kaggle.com/competitions/online-advertising-challenge-fall-2020
+https://www.kaggle.com/competitions/avazu-ctr-prediction
+https://www.kaggle.com/competitions/online-advertising-challenge-fall-2020
