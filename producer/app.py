@@ -38,10 +38,16 @@ def start_producing():
 
 if __name__ == "__main__":
 
-    df = pd.read_csv("test.gz")
+    print("KAFKA_TOPIC", KAFKA_TOPIC)
+    print("KAFKA_HOST", KAFKA_HOST)
 
+    file_path = "../dataset/click-through-rate-prediction/test.gz"
+    df = pd.read_csv(file_path)
     row_iterator = df.iterrows()
 
-    get_next_row = lambda _: next(row_iterator)
+    def get_next_row():
+        _, row = next(row_iterator)
+        return row.to_dict()
 
+    print("Starting producing")
     start_producing()
