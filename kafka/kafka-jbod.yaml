@@ -1,0 +1,100 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: kafka-cluster
+spec:
+  kafka:
+    version: 3.1.0
+    replicas: 3
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: tls
+        port: 9093
+        type: internal
+        tls: true
+      - name: external
+        port: 9094
+        type: nodeport
+        tls: true
+      # - name: external
+      #   port: 9094
+      #   type: ingress
+      #   tls: true
+      #   configuration:
+      #     bootstrap:
+      #       host: bootstrap.kafka.localhost
+      #       annotations:
+      #         external-dns.alpha.kubernetes.io/hostname: bootstrap.kafka.localhost.
+      #         external-dns.alpha.kubernetes.io/ttl: "60"
+      #     brokers:
+      #     - broker: 0
+      #       host: broker-0.kafka.localhost
+      #       annotations:
+      #         external-dns.alpha.kubernetes.io/hostname: broker-0.kafka.localhost.
+      #         external-dns.alpha.kubernetes.io/ttl: "60"
+      #     - broker: 1
+      #       host: broker-1.kafka.localhost
+      #       annotations:
+      #         external-dns.alpha.kubernetes.io/hostname: broker-1.kafka.localhost.
+      #         external-dns.alpha.kubernetes.io/ttl: "60"
+      #     - broker: 2
+      #       host: broker-2.kafka.localhost
+      #       annotations:
+      #         external-dns.alpha.kubernetes.io/hostname: broker-2.kafka.localhost.
+      #         external-dns.alpha.kubernetes.io/ttl: "60"
+    config:
+      offsets.topic.replication.factor: 3
+      num.partitions: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      default.replication.factor: 3
+      min.insync.replicas: 2
+      inter.broker.protocol.version: "3.1"
+    storage:
+      type: jbod
+      volumes:
+      - id: 0
+        type: persistent-claim
+        size: 15Gi
+        deleteClaim: false
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: "500m"
+      limits:
+        memory: 1Gi
+        cpu: "1000m"
+    # metricsConfig:
+    #   type: jmxPrometheusExporter
+    #   valueFrom:
+    #     configMapKeyRef:
+    #       name: kafka-metrics
+    #       key: kafka-metrics-config.yml
+  zookeeper:
+    replicas: 3
+    storage:
+      type: persistent-claim
+      size: 10Gi
+      deleteClaim: false
+    # metricsConfig:
+    #   type: jmxPrometheusExporter
+    #   valueFrom:
+    #     configMapKeyRef:
+    #       name: kafka-metrics
+    #       key: zookeeper-metrics-config.yml
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: "250m"
+      limits:
+        memory: 1Gi
+        cpu: "500m"
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
+  # kafkaExporter:
+  #   topicRegex: ".*"
+  #   groupRegex: ".*"
