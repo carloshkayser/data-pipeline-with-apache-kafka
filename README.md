@@ -23,7 +23,7 @@ sudo apt install default-jdk
 
 ```sh
 # create namespace
-kubectl create namespace kafka
+kubectl create namespace demo
 
 # Add Strimzi repository
 helm repo add strimzi https://strimzi.io/charts
@@ -31,9 +31,10 @@ helm repo update
 
 # Install Strimzi Operator
 helm install kafka strimzi/strimzi-kafka-operator \
-  --namespace kafka --version 0.28.0
+  --namespace demo --version 0.28.0
 
-kubectl apply -n kafka -f kafka-jbod.yaml
+kubectl apply -n demo -f kafka/kafka-jbod.yaml
+
 kubectl get pods -w
 ```
 
@@ -53,4 +54,52 @@ helm install spark-operator spark-operator/spark-operator \
 
 # 
 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### producer
+
+```sh
+eval $(minikube docker-env)
+docker build -f ./producer/Dockerfile -t carloshkayser/fake-kafka-producer:latest .
+kubectl apply -n demo -f producer/deployment.yaml
+```
+
+
+
+
+
+
+
+
+
+
+```sh
+
+# start zookeeper server
+zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+
+# start kafka server
+zookeeper-server-start /home/linuxbrew/.linuxbrew/etc/kafka/zookeeper.properties
+
+# create kafka topic
+kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic to_predict
+
+# initialize producer console
+kafka-console-producer --broker-list localhost:9092 --topic to_predict
+
+# initialize consumer console
+kafka-console-consumer --bootstrap-server localhost:9092 --topic to_predict --from-beginning
 ```

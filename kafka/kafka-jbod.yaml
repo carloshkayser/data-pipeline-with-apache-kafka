@@ -5,7 +5,7 @@ metadata:
 spec:
   kafka:
     version: 3.1.0
-    replicas: 1
+    replicas: 3
     listeners:
       - name: plain
         port: 9092
@@ -62,11 +62,11 @@ spec:
         deleteClaim: false
     resources:
       requests:
+        memory: 256Mi
+        cpu: "250m"
+      limits:
         memory: 512Mi
         cpu: "500m"
-      limits:
-        memory: 1Gi
-        cpu: "1000m"
     # metricsConfig:
     #   type: jmxPrometheusExporter
     #   valueFrom:
@@ -87,10 +87,10 @@ spec:
     #       key: zookeeper-metrics-config.yml
     resources:
       requests:
-        memory: 512Mi
+        memory: 256Mi
         cpu: "250m"
       limits:
-        memory: 1Gi
+        memory: 512Mi
         cpu: "500m"
   entityOperator:
     topicOperator: {}
