@@ -1,11 +1,8 @@
 from kafka import KafkaProducer
 from time import sleep
 
-import threading
-import random
+import pandas as pd
 import json
-import uuid
-import csv
 import os
 
 
@@ -41,11 +38,10 @@ def start_producing():
 
 if __name__ == "__main__":
 
-    csvfile = open("test.csv")
-    dataset = csv.DictReader(csvfile)
+    df = pd.read_csv("test.gz")
 
-    get_next_row = lambda _: next(dataset)
+    row_iterator = df.iterrows()
+
+    get_next_row = lambda _: next(row_iterator)
 
     start_producing()
-
-    csvfile.close()

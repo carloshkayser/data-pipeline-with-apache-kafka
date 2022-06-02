@@ -1,8 +1,8 @@
 FROM python:3.9.10-slim
 
-RUN pip install kafka-python==2.0.2
+RUN pip install kafka-python==2.0.2 pandas
 
-COPY ../datasets/click-through-rate-prediction/test.csv .
+COPY ../dataset/click-through-rate-prediction/test.gz .
 
 COPY . . 
 
