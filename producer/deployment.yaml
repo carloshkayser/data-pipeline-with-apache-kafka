@@ -18,3 +18,8 @@ spec:
       - name: fake-kafka-producer
         image: carloshkayser/fake-kafka-producer:latest
         imagePullPolicy: Never
+        env:
+        - name: KAFKA_HOST
+          value: "kafka-cluster-kafka-bootstrap:9092"
+        - name: KAFKA_TOPIC
+          value: "to_predict"
