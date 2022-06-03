@@ -12,6 +12,7 @@
 
 
 sudo apt install default-jdk
+
 - [Helm](https://helm.sh/docs/intro/install/)
 - []()
 - []()
@@ -89,10 +90,10 @@ kubectl apply -n demo -f producer/deployment.yaml
 ```sh
 
 # start zookeeper server
-zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+zookeeper-server-start /home/linuxbrew/.linuxbrew/etc/kafka/zookeeper.properties &
 
 # start kafka server
-zookeeper-server-start /home/linuxbrew/.linuxbrew/etc/kafka/zookeeper.properties
+kafka-server-start /home/linuxbrew/.linuxbrew/etc/kafka/server.properties &
 
 # create kafka topic
 kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic to_predict
