@@ -2,6 +2,7 @@ from kafka import KafkaProducer
 from time import sleep
 
 import pandas as pd
+import decimal
 import json
 import os
 
@@ -9,6 +10,13 @@ import os
 # KAFKA_HOST = "kafka-cluster-kafka-brokers:9092"
 KAFKA_HOST = os.getenv("KAFKA_HOST", "kafka-cluster-kafka-bootstrap:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "to_predict")
+
+# https://stackoverflow.com/a/3885198/7412570
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, decimal.Decimal):
+            return str(o)
+        return super(DecimalEncoder, self).default(o)
 
 
 def start_producing():
@@ -21,10 +29,14 @@ def start_producing():
         # message = {'request_id': message_id, 'data': json.loads(generate_fake_message())}
 
         message = get_next_row()
+        message["id"] = decimal.Decimal(message["id"])
 
-        print(message)
+        message_json = json.dumps(message, cls=DecimalEncoder).encode("utf-8")
+        print(message_json)
 
-        producer.send(KAFKA_TOPIC, json.dumps(message).encode("utf-8"))
+        producer.send(
+            KAFKA_TOPIC, message_json
+        )
         producer.flush()
 
         print(
