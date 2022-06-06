@@ -7,7 +7,7 @@ import os
 
 
 # KAFKA_HOST = "kafka-cluster-kafka-brokers:9092"
-KAFKA_HOST = os.getenv("KAFKA_CLUSTER", "kafka-cluster-kafka-bootstrap:9092")
+KAFKA_HOST = os.getenv("KAFKA_HOST", "kafka-cluster-kafka-bootstrap:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "to_predict")
 
 
@@ -43,6 +43,8 @@ if __name__ == "__main__":
 
     file_path = "../dataset/click-through-rate-prediction/test.gz"
     df = pd.read_csv(file_path)
+    df = df.dropna()
+
     row_iterator = df.iterrows()
 
     def get_next_row():
