@@ -20,6 +20,10 @@ sudo apt install default-jdk
 
 ## Setup
 
+```sh
+minikube start --memory=16g --cpus=8
+```
+
 ### Apache Kafka Operator
 
 ```sh
@@ -46,14 +50,18 @@ kubectl get pods -w
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
 helm repo update
 
+#
+kubectl apply -f spark-streaming-app/spark-operator.yaml
+
 # Install operator
 helm install spark-operator spark-operator/spark-operator \
-  --namespace spark --create-namespace \
-  --set sparkJobNamespace=default \
-  --set image.tag=v1beta2-1.3.0-3.1.1 \
+  --namespace spark-operator \
+  --set sparkJobNamespace=spark-apps \
+  --set enableWebhook=true \
   --set enableMetrics=true
 
 # 
+helm status spark-operator -n spark-operator
 
 ```
 
@@ -103,4 +111,47 @@ kafka-console-producer --broker-list localhost:9092 --topic to_predict
 
 # initialize consumer console
 kafka-console-consumer --bootstrap-server localhost:9092 --topic to_predict --from-beginning
+```
+
+
+
+
+
+```sql
+CREATE USER de WITH ENCRYPTED PASSWORD 'password';
+CREATE DATABASE predictions WITH OWNER de;
+
+create table predictions (
+	id VARCHAR(50),
+	probability DOUBLE PRECISION
+);
+
+create table predictions (
+	id bigint,
+	probability DOUBLE PRECISION
+);
+
+create table predictions (
+	id DECIMAL(38, 0),
+	probability DOUBLE precision,
+	processed_at timestamp
+);
+
+
+truncate table predictions ;
+
+drop table predictions;
+
+select
+	*
+from 
+	predictions
+order by
+	processed_at desc;
+
+select count(*) from predictions;
+
+select * from predictions where id = 1004049987052434304;
+
+select * from predictions where id = 3036997756145811968;
 ```

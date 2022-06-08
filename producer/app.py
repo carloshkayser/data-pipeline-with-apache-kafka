@@ -34,9 +34,7 @@ def start_producing():
         message_json = json.dumps(message, cls=DecimalEncoder).encode("utf-8")
         print(message_json)
 
-        producer.send(
-            KAFKA_TOPIC, message_json
-        )
+        producer.send(KAFKA_TOPIC, message_json)
         producer.flush()
 
         print(
@@ -45,7 +43,7 @@ def start_producing():
             )
         )
 
-        sleep(2)
+        sleep(1)
 
 
 if __name__ == "__main__":
