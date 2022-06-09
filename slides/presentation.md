@@ -16,7 +16,17 @@ backgroundColor: #fff
 
 <style>
 h1 { font-size: 1.5rem }
+
 p { font-size: 80% }
+
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+figcaption {
+  display: block;
+  margin: 0 auto;
+}
 </style>
 
 Pontifical Catholic University of Rio Grande do Sul<br>Graduate Program in Computer Science
@@ -37,15 +47,70 @@ May 14th, 2022
 
 # Apache Kafka Topic
 
-<br>
+![w:600 center](figures/kafka-topic.png)
+*Fig.1 - 4K Mountains Wallpaper*
 
-![bg w:600 center](figures/kafka-topic.png)
+
+---
+
+<!-- <p>
+    <img src="figures/kafka-topic.png" alt style="width:50%">
+</p>
+<p>
+    <em>image_caption</em>
+</p> -->
+
+
+<figure class="image">
+  <img src="figures/kafka-topic.png" alt="Descirp" style="width:50%">
+  <figcaption>Kafka Topic</figcaption>
+</figure>
+
+
+---
+
+<style>
+.image-caption {
+  text-align: center;
+  font-size: .8rem;
+  color: light-grey;
+}
+</style>
+
+![w:600 center](figures/kafka-topic.png)
+
+<figcaption>Kafka Topic</figcaption>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
 # Apache Spark Structured Streaming
 
+---
 
+<figure>
+
+<img src="figures/kafka-topic.png" alt="Trulli" style="width:50%">
+<figcaption style="align=center"><b>Fig.1 - 4K Mountains Wallpaper</b></figcaption>
+
+</figure>
 
 ---
 Render inline math such as $ax^2+bc+c$.
