@@ -78,13 +78,7 @@ helm status spark-operator -n spark-operator
 
 
 
-### producer
 
-```sh
-eval $(minikube docker-env)
-docker build -f ./producer/Dockerfile -t carloshkayser/fake-kafka-producer:latest .
-kubectl apply -n demo -f producer/deployment.yaml
-```
 
 
 

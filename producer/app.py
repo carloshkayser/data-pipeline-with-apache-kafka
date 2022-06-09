@@ -51,7 +51,20 @@ if __name__ == "__main__":
     print("KAFKA_TOPIC", KAFKA_TOPIC)
     print("KAFKA_HOST", KAFKA_HOST)
 
-    file_path = "../dataset/click-through-rate-prediction/test.gz"
+    # # read csv file without pandas
+    # with open("test.gz", "r") as f:
+    #     line = f.readline()
+    #     while line:
+    #         # check if there is nan or null values
+    #         if "nan" in line or "null" in line:
+    #             line = f.readline()
+    #             continue
+
+    #         print(line)
+
+    #         line = f.readline()
+
+    file_path = "test.gz"
     df = pd.read_csv(file_path)
     df = df.dropna()
 

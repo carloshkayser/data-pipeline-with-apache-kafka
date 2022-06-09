@@ -7,6 +7,10 @@
     $SPARK_HOME/bin/docker-image-tool.sh \
       -m -t v3.2.1 \
       -p $SPARK_HOME/kubernetes/dockerfiles/spark/bindings/python/Dockerfile build
+    
+bin/docker-image-tool.sh \
+  -m -t v3.1.3 \
+  -p kubernetes/dockerfiles/spark/bindings/python/Dockerfile build
     ```
 
 2. **Submit application**
@@ -21,7 +25,6 @@
       --deploy-mode cluster \
       --name spark-pi \
       --class org.apache.spark.examples.SparkPi \
-      --executor-memory 512m \
       --conf spark.executor.instances=2 \
       --conf spark.kubernetes.docker.image.pullPolicy=Never \
       --conf spark.kubernetes.namespace=default \
@@ -29,6 +32,20 @@
       --conf spark.kubernetes.container.image=spark:v3.2.1 \
       --conf spark.kubernetes.file.upload.path=file:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.2.1.jar \
       local:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.2.1.jar
+    
+# On minikube
+$SPARK_HOME/bin/spark-submit \
+  --master k8s://https://$(minikube ip):8443 \
+  --deploy-mode cluster \
+  --name spark-pi \
+  --class org.apache.spark.examples.SparkPi \
+  --conf spark.executor.instances=2 \
+  --conf spark.kubernetes.docker.image.pullPolicy=Never \
+  --conf spark.kubernetes.namespace=default \
+  --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+  --conf spark.kubernetes.container.image=spark:v3.1.3 \
+  --conf spark.kubernetes.file.upload.path=file:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.1.3.jar \
+  local:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.1.3.jar
     ```
 
 3. 
