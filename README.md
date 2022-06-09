@@ -43,6 +43,54 @@ kubectl apply -n demo -f kafka/kafka-jbod.yaml
 kubectl get pods -w
 ```
 
+**Get Apache Kafka bootstrap servers address**
+```sh
+minikube service kafka-cluster-kafka-external-bootstrap --url -n demo
+# Or
+echo $(minikube ip):$(kubectl get svc kafka-cluster-kafka-external-bootstrap -n demo -o jsonpath='{.spec.ports[].nodePort}')
+```
+
+### Producer Application
+
+This application sends messages to a topic in Apache Kafka
+
+```sh
+eval $(minikube docker-env)
+
+docker build -f ./producer/Dockerfile -t carloshkayser/fake-kafka-producer:latest .
+
+kubectl apply -n demo -f producer/deployment.yaml
+
+kubectl get pods -w
+```
+
+If everything is working, you should see the data arriving at Kafka with the command below:
+```sh
+kafka-console-consumer --bootstrap-server <kafka-bootstrap-servers> --topic to_predict
+``` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Apache Spark Operator
 
 ```sh
