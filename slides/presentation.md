@@ -5,7 +5,7 @@ _class: lead
 title: Data Stream Processing with Apache Kafka and Spark Structured Streaming
 description: An example slide deck created using Marpit
 
-author: "User"
+author: "Carlos Henrique Kayser"
 date: "April 2022"
 
 paginate: true
@@ -13,33 +13,39 @@ backgroundColor: #fff
 # backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 ---
-<p style="font-size:80%">
+
+<style>
+h1 { font-size: 1.5rem }
+p { font-size: 80% }
+</style>
+
 Pontifical Catholic University of Rio Grande do Sul<br>Graduate Program in Computer Science
-</p>
 
-### Data Stream Processing with Apache Kafka and Spark Structured Streaming
+# Data Stream Processing with Apache Kafka<br>and Spark Structured Streaming
 
-<p style="font-size:80%">
-Carlos Henrique Kayser
-<br>
-Email: carlos.kayser@edu.pucrs.br
-<br>
-<br>
-Scalable Data Stream Processing
-<br>
-Prof. Dr. Dalvan Jair Griebler
-<br>
-<br>
+Carlos Henrique Kayser<br>Email: carlos.kayser@edu.pucrs.br
+
+Scalable Data Stream Processing<br>Prof. Dr. Dalvan Jair Griebler</p>
+
 May 14th, 2022
-</p>
 
 ---
 
-# slide 2
+# Apache Kafka
 
 ---
 
-# Slide 3
+# Apache Kafka Topic
+
+<br>
+
+![bg w:600 center](figures/kafka-topic.png)
+
+---
+
+# Apache Spark Structured Streaming
+
+
 
 ---
 Render inline math such as $ax^2+bc+c$.

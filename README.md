@@ -69,8 +69,21 @@ If everything is working, you should see the data arriving at Kafka with the com
 kafka-console-consumer --bootstrap-server <kafka-bootstrap-servers> --topic to_predict
 ``` 
 
+<!-- ### Monitoring
 
+```sh
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
 
+helm install prometheus prometheus-community/kube-prometheus-stack -n demo --values monitoring/prometheus.yaml
+```
+
+**Get prometheus url**
+```sh
+kubectl expose service prometheus-grafana --type=NodePort --target-port=3000 --name=prometheus-grafana-node-port -n demo
+
+minikube service prometheus-grafana-node-port --url -n demo
+``` -->
 
 
 

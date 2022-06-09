@@ -132,5 +132,5 @@ dmypy.json
 *.gz
 *.csv
 *.zip
-checkpoint
+checkpointLocation
 data
