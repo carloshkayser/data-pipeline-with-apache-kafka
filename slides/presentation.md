@@ -51,12 +51,8 @@ figcaption {
 
 # Introduction
 
-- Introduction
-  - 
-- Kafka
-- Apache Structured Streaming
-- Demonstration
-- readStream and writeStream
+
+
 
 
 
@@ -113,8 +109,11 @@ The proposed solution consists of applying a machine learning model (i.e., trans
 - It provides an unified batch and streaming API that enables us to interact with data published to Kafka as a DataFrame
   - i.e., it is possible to use the same code for batch or streaming
 - It ensures end-to-end exactly-once fault-tolerance guarantees through _checkpointing_ and _write-ahead logs_
-- Structured Streaming queries are processed using a _micro-batch_ processing engine
+- Structured Streaming queries are processed using a _micro-batch_ processing engine (default)
   - i.e., _micro-batch_ starts as soon as the previous one ends
+
+
+
 
 
 
@@ -125,10 +124,10 @@ The proposed solution consists of applying a machine learning model (i.e., trans
 # Reading data from Kafka
 
 
-- To following PySpark code read data from `demo` Kafka topic (*subscribe*)
+- The following PySpark code read data from `demo` Kafka topic (*subscribe*)
 - It reads the data in a streaming way (*startingOffsets*)
   - "latest" to read only the new messages
-  - "earliest" to read messages messages that have not been processed
+  - "earliest" to read all messages that have not been processed
 
 ```python
 df = spark \
@@ -182,19 +181,20 @@ df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
 ---
 # Writing data to not supported output sink
 
-Example:
+Example of writing data in PostgreSQL:
 
 ```python
 def foreach_batch_function(df, epoch_id):
 
-    df.write.format("jdbc")
-    .option("url", "jdbc:postgresql://localhost:5432/postgres")
-    .option("driver", "org.postgresql.Driver")
-    .option("dbtable", "predictions")
-    .option("user", "postgres")
-    .option("password", "postgres")
-    .mode("append")
-    .save()
+    df.write \
+      .format("jdbc") \
+      .option("url", "jdbc:postgresql://localhost:5432/postgres") \
+      .option("driver", "org.postgresql.Driver") \
+      .option("dbtable", "predictions") \
+      .option("user", "postgres") \
+      .option("password", "postgres") \
+      .mode("append") \
+      .save()
 
 df \
   .writeStream \
@@ -205,41 +205,45 @@ df \
 
 
 
-
-
-
-<!--
-TODO
-- Triggers (não incluir)
-- watermark ()
-- Window Operations on Event Time
-- 
-- https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#recovering-from-failures-with-checkpointing
--->
-
-
-
-
-
-
 ---
 # Demonstration
 
----
+- Testbed
+  - minikube
 
+- producer
+- Apache Kafka with Strimzi
+- 
+
+
+
+
+---
+# Conclusions
+
+TODO
+
+---
 # References
 
 <style scoped>
 p { font-size: 65% }
 </style>
 
+TODO
+
 [1] Armbrust, Michael, et al. "Structured streaming: A declarative api for real-time applications in apache spark." _Proceedings of the 2018 International Conference on Management of Data_. 2018.
 
-[2] 
+[2] Apache Spark. _Structured Streaming Programming Guide_. 2022. url: https:
+//spark.apache.org/docs/3.2.1/structured-streaming-programming-
+guide.html.
+
+[3]
 
 
 
-https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#overview
+
+
 
 https://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html
 
