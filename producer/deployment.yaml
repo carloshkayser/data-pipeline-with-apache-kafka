@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fake-kafka-producer
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: fake-kafka-producer
@@ -23,3 +23,5 @@ spec:
           value: "kafka-cluster-kafka-bootstrap:9092"
         - name: KAFKA_TOPIC
           value: "to_predict"
+        - name: WAIT_TIME
+          value: "0.10"

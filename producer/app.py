@@ -10,6 +10,7 @@ import os
 # KAFKA_HOST = "kafka-cluster-kafka-brokers:9092"
 KAFKA_HOST = os.getenv("KAFKA_HOST", "kafka-cluster-kafka-bootstrap:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "to_predict")
+WAIT_TIME = float(os.getenv("WAIT_TIME", "0.100")) # seconds
 
 # https://stackoverflow.com/a/3885198/7412570
 class DecimalEncoder(json.JSONEncoder):
@@ -43,7 +44,7 @@ def start_producing():
             )
         )
 
-        sleep(1)
+        sleep(WAIT_TIME)
 
 
 if __name__ == "__main__":
