@@ -51,6 +51,13 @@ figcaption {
 
 # Introduction
 
+- In the big data era, large volumes of data are generated every day
+
+- According to Marr in 2018, 90% of the data at that time were generated only in the last two years [7]
+
+- In order to extract useful insights, this data needs to be analyzed
+
+- In this way, efficient Data Stream Processing Systems (DSPSs) have become essential [6]
 
 
 
@@ -58,7 +65,16 @@ figcaption {
 
 ---
 # Introduction
- 
+
+- With all of this data, many organizations want to make their processes data-driven
+  - In order to reduce costs and be more competitive
+
+- One great example could be the **adversiment market**
+
+- Predict **whether an ad will be clicked or not**, can reduce costs and increase profits
+
+- However, processing a large volume of events in **real time** is a challenge
+
 
 
 
@@ -66,11 +82,15 @@ figcaption {
 
 # System proposal
 
-The proposed solution consists of applying a machine learning model (i.e., transformations) with Apache Spark in real time on the data stream comming from Apache Kafka;    
+- To takle the scenario presented, a possible architectural solution would be:
+  - Apache Kafka to handle user-generated events;
+  - Apache Spark Structured Streaming to apply a predictive machine learning model on the data stream
+    - i.e., to predict whether an ad will be clicked or not
 
-![w:900 center](figures/system-proposal.png)
+![w:700 center](figures/system-proposal.png)
 
 
+<!-- To takle the scenario presented, a possible solution consists of applying a machine learning model (i.e., predict whether an ad will be clicked or not) with Apache Spark Structured Streaming in real time on the data stream comming from Apache Kafka;     -->
 
 
 
@@ -83,7 +103,7 @@ The proposed solution consists of applying a machine learning model (i.e., trans
 
 
 ---
-# Apache Kafka
+# Apache Kafka Basics
 
 - Kafka is a distributed event streaming plataform
 - The data is organized into _topics_ (e.g., tweets, orders)
@@ -103,7 +123,7 @@ The proposed solution consists of applying a machine learning model (i.e., trans
 
 ---
 
-# Apache Spark Structured Streaming
+# Apache Spark Structured Streaming Basics
 
 - Structured Streaming is a scalable and fault-tolerant stream processing engine
 - It provides an unified batch and streaming API that enables us to interact with data published to Kafka as a DataFrame
@@ -211,17 +231,43 @@ df \
 - Testbed
   - minikube
 
-- producer
-- Apache Kafka with Strimzi
-- 
+- Apache Kafka on Kubernetes with Strimzi Operator
+  - Apache Kafka Topics
+
+- Producer (python application)
+
+- Apache Spark Structured Streaming Application (jupyter)
+
+
+
+
 
 
 
 
 ---
 # Conclusions
+<!-- 
+- Facilidade de integrar Apache kafka e Spark
 
-TODO
+- Facilidade de desenvolver com Apache Spark
+
+- Utilização de Apache Spark em big techs
+
+- Facilidade em escalar solução 
+ -->
+
+- In conclusion, implementing code using Spark API is easy
+  - Uses the same API for batch or streaming
+
+- Integration with Apache Kafka is easy
+
+- It is simple to scale the solution to support a larger number of messages
+
+- In addition, Apache Spark Strutured Streaming is used in production envinronment of big techs [1]
+
+
+
 
 ---
 # References
@@ -230,32 +276,29 @@ TODO
 p { font-size: 65% }
 </style>
 
-TODO
-
 [1] Armbrust, Michael, et al. "Structured streaming: A declarative api for real-time applications in apache spark." _Proceedings of the 2018 International Conference on Management of Data_. 2018.
 
-[2] Apache Spark. _Structured Streaming Programming Guide_. 2022. url: https:
+[2] Apache Spark. "Structured Streaming Programming Guide". Source: https:
 //spark.apache.org/docs/3.2.1/structured-streaming-programming-
-guide.html.
+guide.html, June 2022.
 
-[3]
+[3] Apache Spark. "Structured Streaming + Kafka Integration Guide". Source: https://spark.apache.org/docs/3.2.1/structured-streaming-kafka-integration.html, June 2022.
 
+[4] Apache Kafka. "Apache Kafka Documentation". Source: https://kafka.apache.org/32/documentation.html, June 2022.
 
+[5] Das, Tathagata, et al. "Processing Data in Apache Kafka with Structured Streaming in Apache Spark 2.2". Source: https://databricks.com/blog/2017/01/19/real-time-streaming-etl-structured-streaming-apache-spark-2-1.html, June 2022.
 
-
-
-
-https://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html
-
-https://databricks.com/blog/2017/04/26/processing-data-in-apache-kafka-with-structured-streaming-in-apache-spark-2-2.html
-
-https://kafka.apache.org/documentation/
-
-
-
-
+[6] Eskandari, Leila, et al. "I-Scheduler: Iterative scheduling for distributed stream processing systems." _Future Generation Computer Systems_ 117 (2021): 219-233.
 
 ---
+# References
+
+<style scoped>
+p { font-size: 65% }
+</style>
+
+[7] Marr, Bernard. “How Much Data Do We Create Every Day? The Mind-Blowing Stats Everyone Should Read”. Forbes. May 21, 2018
+
 
 
 
