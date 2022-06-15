@@ -69,11 +69,11 @@ figcaption {
 - With all of this data, many organizations want to make their processes data-driven
   - In order to reduce costs and be more competitive
 
-- One great example could be the **adversiment market**
+- One great example could be the **advertisement market**
 
-- Predict **whether an ad will be clicked or not**, can reduce costs and increase profits
+- Predict **whether an ad will be clicked or not** could reduce costs and increase profits
 
-- However, processing a large volume of events in **real time** is a challenge
+- However, processing a large volume of events in **real-time** is a challenge
 
 
 
@@ -82,15 +82,15 @@ figcaption {
 
 # System proposal
 
-- To takle the scenario presented, a possible architectural solution would be:
+- To takle the scenario presented, a possible architectural solution could be:
   - Apache Kafka to handle user-generated events;
-  - Apache Spark Structured Streaming to apply a predictive machine learning model on the data stream
+  - Apache Spark Structured Streaming to apply a predictive machine learning model to the data stream
     - i.e., to predict whether an ad will be clicked or not
 
 ![w:700 center](figures/system-proposal.png)
 
 
-<!-- To takle the scenario presented, a possible solution consists of applying a machine learning model (i.e., predict whether an ad will be clicked or not) with Apache Spark Structured Streaming in real time on the data stream comming from Apache Kafka;     -->
+<!-- To takle the scenario presented, a possible solution consists of applying a machine learning model (i.e., predict whether an ad will be clicked or not) with Apache Spark Structured Streaming in real-time on the data stream coming from Apache Kafka;     -->
 
 
 
@@ -105,7 +105,7 @@ figcaption {
 ---
 # Apache Kafka Basics
 
-- Kafka is a distributed event streaming plataform
+- Kafka is a distributed event streaming platform
 - The data is organized into _topics_ (e.g., tweets, orders)
   - To enable parallelism, they are split into _partitions_
 - A _producer_ append data/messages to _topics_
@@ -126,7 +126,7 @@ figcaption {
 # Apache Spark Structured Streaming Basics
 
 - Structured Streaming is a scalable and fault-tolerant stream processing engine
-- It provides an unified batch and streaming API that enables us to interact with data published to Kafka as a DataFrame
+- It provides a unified batch and streaming API that enables us to interact with data published to Kafka as a DataFrame
   - i.e., it is possible to use the same code for batch or streaming
 - It ensures end-to-end exactly-once fault-tolerance guarantees through _checkpointing_ and _write-ahead logs_
 - Structured Streaming queries are processed using a _micro-batch_ processing engine (default)
@@ -144,7 +144,7 @@ figcaption {
 # Reading data from Kafka
 
 
-- The following PySpark code read data from `demo` Kafka topic (*subscribe*)
+- The following PySpark code read data from the `demo` Kafka topic (*subscribe*)
 - It reads the data in a streaming way (*startingOffsets*)
   - "latest" to read only the new messages
   - "earliest" to read all messages that have not been processed
@@ -167,7 +167,7 @@ df = spark \
 
 - When writing data, Apache Spark requires a `checkpointLocation` to store all data related to the execution
   - In case of failure or shutdown, it is possible to recover the previous progress and state
-- The command below write data to `demo` Kafka topic. 
+- The command below writes data to the `demo` Kafka topic. 
 
 ```python
 df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
@@ -235,8 +235,11 @@ df \
   - Apache Kafka Topics
 
 - Producer (python application)
+  - It sends events to Apache Kafka
 
-- Apache Spark Structured Streaming Application (jupyter)
+- Apache Spark ML Training Notebook (jupyter)
+
+- Apache Spark Structured Streaming Notebook (jupyter)
 
 
 
@@ -264,7 +267,7 @@ df \
 
 - It is simple to scale the solution to support a larger number of messages
 
-- In addition, Apache Spark Strutured Streaming is used in production envinronment of big techs [1]
+- In addition, Apache Spark Structured Streaming is used in a production environment of big techs [1]
 
 
 
@@ -276,7 +279,7 @@ df \
 p { font-size: 65% }
 </style>
 
-[1] Armbrust, Michael, et al. "Structured streaming: A declarative api for real-time applications in apache spark." _Proceedings of the 2018 International Conference on Management of Data_. 2018.
+[1] Armbrust, Michael, et al. "Structured streaming: A declarative API for real-time applications in apache spark." _Proceedings of the 2018 International Conference on Management of Data_. 2018.
 
 [2] Apache Spark. "Structured Streaming Programming Guide". Source: https:
 //spark.apache.org/docs/3.2.1/structured-streaming-programming-
@@ -297,7 +300,7 @@ guide.html, June 2022.
 p { font-size: 65% }
 </style>
 
-[7] Marr, Bernard. “How Much Data Do We Create Every Day? The Mind-Blowing Stats Everyone Should Read”. Forbes. May 21, 2018
+[7] Marr, Bernard. “How Much Data Do We Create Every Day? The Mind-Blowing Stats Everyone Should Read”. Forbes. May 21st, 2018
 
 
 
