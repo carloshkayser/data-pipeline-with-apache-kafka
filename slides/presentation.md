@@ -250,15 +250,6 @@ df \
 
 ---
 # Conclusions
-<!-- 
-- Facilidade de integrar Apache kafka e Spark
-
-- Facilidade de desenvolver com Apache Spark
-
-- Utilização de Apache Spark em big techs
-
-- Facilidade em escalar solução 
- -->
 
 - In conclusion, implementing code using Spark API is easy
   - Uses the same API for batch or streaming
