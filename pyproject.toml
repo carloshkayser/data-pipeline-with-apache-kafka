@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "spark-ml-training"
+version = "0.1.0"
+description = ""
+authors = ["Carlos Henrique <carloshkayser@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyspark = "3.2.1"
+pandas = "^1.4.2"
+jupyterlab = "^3.4.2"
+matplotlib = "^3.5.2"
+pyarrow = "^8.0.0"
+sparkmonitor = "^2.1.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
