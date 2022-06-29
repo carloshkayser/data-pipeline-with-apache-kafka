@@ -36,7 +36,7 @@ def start_producing(reader):
             message["id"] = decimal.Decimal(message["id"])
 
             message_json = json.dumps(message, cls=DecimalEncoder).encode("utf-8")
-            print(message_json)
+            # print(message_json)
 
             producer.send(KAFKA_TOPIC, message_json)
             producer.flush()
@@ -47,13 +47,14 @@ def start_producing(reader):
                 )
             )
 
-            sleep(WAIT_TIME)
-
+            # if WAIT_TIME > 0:
+            #     sleep(WAIT_TIME)
 
 if __name__ == "__main__":
 
     print("KAFKA_TOPIC", KAFKA_TOPIC)
     print("KAFKA_HOST", KAFKA_HOST)
+    print("Without waiting:", WAIT_TIME)
 
     file_path = "test.gz"
 
