@@ -53,7 +53,7 @@ figcaption {
 
 - In the big data era, large volumes of data are generated every day
 
-- According to Marr in 2018, 90% of the data at that time were generated only in the last two years [7]
+- According to Marr in 2018, 2.5 quintillion bytes of data were created each day [7]
 
 - In order to extract useful insights, this data needs to be analyzed
 
