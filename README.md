@@ -1,4 +1,4 @@
-# Data Pipeline with Apache Kafka and Spark
+# Data Pipelines with Apache Kafka and Spark
 
 A demonstration project showing how to build real-time data pipelines using Apache Kafka and Spark Structured Streaming on Kubernetes. This project implements a click-through rate (CTR) prediction system that processes streaming data in real-time.
 
